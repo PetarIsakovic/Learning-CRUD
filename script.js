@@ -7,7 +7,7 @@ const innerPopUp = document.getElementById("innerPopUp");
 const error = document.getElementById("error");
 
 async function displayTasks(){
-    const response = await fetch("http://localhost:3000/tasks");
+    const response = await fetch("https://mock-task-server.onrender.com/tasks/");
     const data = await response.json();
     for(let i = 0; i < data.length; i++){
         const newTask = document.createElement("div");
@@ -41,19 +41,21 @@ async function displayTasks(){
 }
 
 async function create(task){
-    const response = await fetch("http://localhost:3000/tasks", {
+    const response = await fetch("https://mock-task-server.onrender.com/tasks/", {
         method: "POST",
         body: JSON.stringify(task),
         headers: {
             "Content-Type": "application/json"
         }
     })
+    location.reload();
 }
 
 async function deleteTask(id){
-    const response = await fetch("http://localhost:3000/tasks/" + id, {
+    const response = await fetch("https://mock-task-server.onrender.com/tasks/" + id, {
         method: "DELETE"
     })
+    location.reload();
 }
 
 async function main(){
@@ -74,13 +76,14 @@ async function main(){
 }
 
 async function replace(task, id){
-    const response = await fetch("http://localhost:3000/tasks/" + id, {
+    const response = await fetch("https://mock-task-server.onrender.com/tasks/" + id, {
         method: "PUT",
         body: JSON.stringify(task),
         headers: {
             "Content-Type": "application/json"
         }
     })
+    location.reload();
 }
 
 main();
